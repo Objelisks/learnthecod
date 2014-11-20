@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#chat {
+    flex-grow: 1;
+}
+
+#center {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+#code {
+    flex-grow: 3;
+}
+
+#console {
+    flex-grow: 1;
+}
+
+#right {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#lineout {
+    flex-grow: 3;
+}
+
+#visualout {
+    flex-grow: 1;
+}

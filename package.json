@@ -1,14 +1,31 @@
 {
-  "name": "cocode",
+  "name": "learnthecod",
   "version": "0.0.1",
   "description": "shared javascript teaching tool",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
+  "author": "objelisks",
   "license": "MIT",
   "dependencies": {
-    "socket.io": "~1.2.0"
+    "socket.io": "~1.2.0",
+    "node-static": "~0.7.6"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Objelisks/learnthecod.git"
+  },
+  "keywords": [
+    "javascript",
+    "node",
+    "web",
+    "learn",
+    "tool"
+  ],
+  "bugs": {
+    "url": "https://github.com/Objelisks/learnthecod/issues"
   }
 }
