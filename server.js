@@ -5,18 +5,18 @@ var nodeStatic = require('node-static');
 var port = process.argv[2] || 80;
 var files = new nodeStatic.Server('./public');
 
-
 var server = http.createServer(function(req, res) {
     req.addListener('end', function() {
         files.serve(req, res);
     }).resume();
-}).listen(port);
+});
+server.listen(port);
 
 var io = socketio(server);
-io.on('connected', function(socket) {
+io.on('connection', function(socket) {
     // something something namespaces
 
-    socket.on('keypress', function(data) {
-        socket.broadcast.emit('keypress', data);
+    socket.on('key', function(data) {
+        socket.broadcast.emit('key', data);
     });
 });
