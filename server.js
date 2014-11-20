@@ -2,7 +2,7 @@ var http = require('http');
 var socketio = require('socket.io');
 var nodeStatic = require('node-static');
 
-var port = process.env.PORT || 3000;
+var port = process.argv[2] || 80;
 var files = new nodeStatic.Server('./public');
 
 
