@@ -7,7 +7,9 @@ to run locally
 ==
 
 in top folder:
-<pre>node server</pre>
+<pre>
+sudo node proxy&
+node server</pre>
 
 in browser:
-http://localhost:3000
+http://localhost
