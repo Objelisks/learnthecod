@@ -11,8 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "socket.io": "~1.2.0",
-    "node-static": "~0.7.6",
-    "http-proxy": "~1.6.2"
+    "node-static": "~0.7.6"
   },
   "devDependencies": {},
   "repository": {
