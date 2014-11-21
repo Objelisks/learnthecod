@@ -26,3 +26,11 @@ body div {
 .bottom {
     flex: 0.25 0px;
 }
+
+.active {
+    border: 1px solid red;
+}
+
+.chatName {
+    font-weight: bold;
+}
