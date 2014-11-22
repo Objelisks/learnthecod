@@ -3,13 +3,40 @@ var socket = io();
 var ENTER = 13, BACKSPACE = 8, TAB = 9;
 var specialKeys = [ENTER, BACKSPACE, TAB];
 var message = "";
-var userName = "Tim";
+var userName = "Tim"; // get from dialog box
 var activeHandler;
 var chatElement = document.querySelector('#chat'),
-    codeElement = document.querySelector('#code');
+    codeElement = document.querySelector('#code'),
+    lineoutElement = document.querySelector('#lineout'),
+    consoleElement = document.querySelector('#console');
 var currentChatLine = document.createElement('div');
 chatElement.appendChild(currentChatLine);
 
+
+var evaluateCode = function(code) {
+    var worker = new Worker('worker.js');
+    worker.postMessage(code);
+    worker.onmessage = function(e) {
+        var obj = e.data;
+        switch(obj.type) {
+            case 'line':
+                var resultDiv = document.createElement('div');
+                resultDiv.textContent = '' + obj.data;
+                lineoutElement.appendChild(resultDiv);
+                break;
+            case 'console':
+                var resultDiv = document.createElement('div');
+                resultDiv.textContent = '' + obj.data;
+                consoleElement.appendChild(resultDiv);
+                break;
+            default:
+                break;
+        }
+    };
+};
+evaluateCode('console.log("hello world"); 15 * 28 + 4;');
+
+// <div><span class="chatName">name: </span><span>text</span></div>
 var buildChatLine = function(name, text) {
     var lineElement = document.createElement('div');
     var nameElement = document.createElement('span');
@@ -40,6 +67,7 @@ var getUserColor = function(id) {
 var generateColor = function() {
     return '#aa3333';
 };
+
 
 var chatHandleKeyDown = function(key) {
     if(specialKeys.indexOf(key) !== -1) {
@@ -75,6 +103,7 @@ var chatHandler = {
     'keypress' : chatHandleKeyPress
 };
 
+
 var codeHandleKeyDown = function(key) {
     if(specialKeys.indexOf(key) !== -1) {
         switch(key) {
@@ -104,13 +133,13 @@ var codeHandleKeyPress = function(key) {
     }
 };
 
-
 var codeHandler = {
     'keydown' : codeHandleKeyDown,
     'keypress' : codeHandleKeyPress
 };
 
 activeHandler = chatHandler;
+
 
 socket.on('connect', function() {
     socket.on('message', function(data) {
@@ -142,40 +171,3 @@ document.querySelector('#center').addEventListener('mouseenter', function(e) {
     codeElement.classList.add('active');
     chatElement.classList.remove('active');
 });
-
-
-/*
-
-if(active === CHAT_WINDOW) {
-    
-} else {
-    
-}
-
-
-
-{
-    handleKey
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
